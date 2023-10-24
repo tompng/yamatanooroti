@@ -44,6 +44,16 @@ class Yamatanooroti::TestRunRuby < Yamatanooroti::TestCase
     get_out_from_tmpdir
   end
 
+  def test_assert_screen_takes_a_message_when_failed
+    start_terminal(5, 30, ['ruby', '-e', 'puts "aaa"'])
+    close
+    assert_raise Test::Unit::AssertionFailedError do
+      assert_screen(<<~EOC, 'message when failed')
+        bbb
+      EOC
+    end
+  end
+
   private
 
   def get_into_tmpdir

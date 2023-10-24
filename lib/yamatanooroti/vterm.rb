@@ -105,13 +105,13 @@ module Yamatanooroti::VTermTestCaseModule
     @result
   end
 
-  def assert_screen(expected_lines)
+  def assert_screen(expected_lines, message = nil)
     actual_lines = result
     case expected_lines
     when Array
-      assert_equal(expected_lines, actual_lines)
+      assert_equal(expected_lines, actual_lines, message)
     when String
-      assert_equal(expected_lines, actual_lines.join("\n").sub(/\n*\z/, "\n"))
+      assert_equal(expected_lines, actual_lines.join("\n").sub(/\n*\z/, "\n"), message)
     end
   end
 end
