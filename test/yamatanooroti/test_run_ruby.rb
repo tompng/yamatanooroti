@@ -47,7 +47,7 @@ class Yamatanooroti::TestRunRuby < Yamatanooroti::TestCase
   def test_assert_screen_takes_a_message_when_failed
     start_terminal(5, 30, ['ruby', '-e', 'puts "aaa"'])
     close
-    assert_raise Test::Unit::AssertionFailedError do
+    assert_raise_with_message Test::Unit::AssertionFailedError, /\Amessage when failed/ do
       assert_screen(<<~EOC, 'message when failed')
         bbb
       EOC
