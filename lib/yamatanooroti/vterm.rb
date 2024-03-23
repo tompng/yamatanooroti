@@ -30,7 +30,7 @@ module Yamatanooroti::VTermTestCaseModule
 
   def write(str)
     sync
-    str_to_write = String.new(encoding: Encoding::ASCII_8BIT)
+    str_to_write = +String.new(encoding: Encoding::ASCII_8BIT)
     str.chars.each do |c|
       byte = c.force_encoding(Encoding::ASCII_8BIT).ord
       if c.bytesize == 1 and byte.allbits?(0x80) # with Meta key
@@ -54,7 +54,7 @@ module Yamatanooroti::VTermTestCaseModule
   end
 
   private def sync
-    startup_message = '' if @startup_message
+    startup_message = +'' if @startup_message
     loop do
       sleep @wait
       chunk = @pty_output.read_nonblock(1024)
@@ -87,7 +87,7 @@ module Yamatanooroti::VTermTestCaseModule
     @result = []
     rows, cols = @vterm.size
     rows.times do |r|
-      @result << ''
+      @result << +''
       cols.times do |c|
         cell = @screen.cell_at(r, c)
         if cell.char # The second cell of fullwidth char will be nil.

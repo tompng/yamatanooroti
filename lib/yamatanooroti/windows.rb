@@ -342,7 +342,7 @@ module Yamatanooroti::WindowsTestCaseModule
     end
 
     quote_hit = true
-    result = '"'
+    result = +'"'
     arg.chars.reverse.each do |c|
       result << c
       if quote_hit and c == '\\'
@@ -498,7 +498,7 @@ module Yamatanooroti::WindowsTestCaseModule
     screen = []
     prev_c = nil
     @height.times do |y|
-      line = ''
+      line = +''
       @width.times do |x|
         index = @width * y + x
         char_info = DL::CHAR_INFO.new(char_info_matrix + DL::CHAR_INFO.size * index)
