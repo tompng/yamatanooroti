@@ -7,3 +7,9 @@ end
 
 # Specify your gem's dependencies in reline.gemspec
 gemspec
+
+group :development do
+  gem 'rake'
+  gem 'bundler'
+  gem 'reline'
+end
